@@ -1,4 +1,5 @@
-import 'assets/css/style.css';
+import '../assets/css/style.css';
+import React from 'react';
 
 function Header_Sub(props) {
     return (

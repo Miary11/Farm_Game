@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Test = () => {
+    document.title = 'Test';
     return (
         <div>
             <h1>Test</h1>
