@@ -75,6 +75,20 @@ create or replace view AllUtilisateurCulture as (select CultureUtilisateur.idUti
 	join Saison on Culture.saison = Saison.idSaison
 );
 
+create or replace view AllUtilisateurCultureDetails as (select Utilisateur.pseudo as proprietaire,CultureUtilisateur.idCulture,Culture.nom,TypeCulture.nom as type,prixAchat,prixVente,Saison.nom as saison,photo
+	from CultureUtilisateur
+	join Culture on CultureUtilisateur.idCulture = Culture.idCulture
+	join Utilisateur on CultureUtilisateur.idUtilisateur = Utilisateur.idUtilisateur
+	join TypeCulture on Culture.type = TypeCulture.idTypeCulture
+	join Saison on Culture.saison = Saison.idSaison
+);
+
+create or replace view CultureDetails as (select idCulture,Culture.nom,TypeCulture.nom as type,prixAchat,prixVente,Saison.nom as saison,photo
+	from Culture
+	join TypeCulture on Culture.type = TypeCulture.idTypeCulture
+	join Saison on Culture.saison = Saison.idSaison
+);
+
 CREATE SEQUENCE terrainSeq START WITH 1 INCREMENT BY 1 CACHE 1 NO CYCLE;
 
 CREATE TABLE Terrain(
@@ -88,6 +102,11 @@ CREATE TABLE Terrain(
 	foreign key (proprietaire) references Utilisateur(idUtilisateur)
 );
 
+create or replace view TerrainDetails as (select idTerrain,Utilisateur.pseudo as proprietaire,description,localisation,photo,dateCreation,etat
+	from Terrain
+	join Utilisateur on Terrain.proprietaire = Utilisateur.idUtilisateur
+);
+
 CREATE SEQUENCE parcelleSeq START WITH 1 INCREMENT BY 1 CACHE 1 NO CYCLE;
 
 CREATE TABLE Parcelle(
@@ -98,11 +117,20 @@ CREATE TABLE Parcelle(
 	foreign key (terrain) references Terrain(idTerrain)
 );
 
+create or replace view ParcelleDetails as (select idParcelle,(longueur * largeur) as superficie,terrain
+	from Parcelle
+);
+
 CREATE TABLE ParcelleCulturePossible(
 	idParcelle varchar(30),
 	idTypeCulture varchar(30),
 	foreign key (idParcelle) references Parcelle(idParcelle),
 	foreign key (idTypeCulture) references TypeCulture(idTypeCulture)
+);
+
+create or replace view ParcelleCulturePossibleDetails as (select idParcelle,TypeCulture.nom as culture
+	from ParcelleCulturePossible
+	join TypeCulture on ParcelleCulturePossible.idTypeCulture = TypeCulture.idTypeCulture
 );
 
 CREATE TABLE ParcelleCulture(
@@ -112,6 +140,11 @@ CREATE TABLE ParcelleCulture(
 	dateCulture date,
 	foreign key (idParcelle) references Parcelle(idParcelle),
 	foreign key (idCulture) references Culture(idCulture)
+);
+
+create or replace view HistoriqueCulture as (select idParcelle,Culture.nom as culture,quantite,(quantite * prixAchat) as coutRevient, dateCulture
+	from ParcelleCulture
+	join Culture on ParcelleCulture.idCulture = Culture.idCulture
 );
 
 CREATE SEQUENCE simulationSeq START WITH 1 INCREMENT BY 1 CACHE 1 NO CYCLE;
@@ -126,12 +159,15 @@ CREATE TABLE Simulation(
 	foreign key (idCulture) references Culture(idCulture)
 );
 
+create or replace view SimulationCulture as (select idSimulation,idParcelle,Culture.nom as culture,quantite,(quantite * prixAchat) as coutRevient, dateSimulation
+	from Simulation
+	join Culture on Simulation.idCulture = Culture.idCulture
+);
+
 -- À faire en MongoDB
 
 -- CREATE TABLE Discussion(
 -- 	envoyeur varchar(30),
 -- 	receveur varchar(30),
 -- 	message varchar(800),
--- 	foreign key (envoyeur) references Utilisateur(idUtilisateur),
--- 	foreign key (receveur) references Utilisateur(idUtilisateur)
 -- );
