@@ -264,6 +264,28 @@ main{
     margin-top: 3%;
     margin-left: 3%;
     margin-bottom: 5%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.caroussel .card img{
+    height: 420px;
+    margin-top: -30%;
+}
+
+#c2 .card img{
+    /* object-fit: cover;
+    display: hidden; */
+}
+
+body input{
+    color: #ffffff;
+}
+
+body input:active{
+    background-color: transparent;
+    border: 1px solid white;
+    color: #ffffff;
 }
 
 .BottomLeft{
@@ -284,7 +306,13 @@ main{
 .card2 .CardTop{
     height: 167px;
     border-bottom: 1px solid white;
-    object-fit: cover;
+    overflow: hidden;
+    /* object-fit: contain; */
+}
+
+.card2 .CardTop img{
+    height: 167px;
+    margin-top: -20%;
 }
 
 .card2 .CardBottom{
@@ -550,7 +578,7 @@ input[type="file"] {
 }
 
 .profil .profilTop .navRight p{
-    margin-left: 5%;
+    margin-left: 2%;
 	margin-top: 7%;
 }
 

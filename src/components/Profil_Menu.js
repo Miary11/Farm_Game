@@ -1,8 +1,17 @@
 import '../assets/css/style.css';
 import Button from '../components/Button';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Profil_Menu(props) {
+    const navigate = useNavigate();
+
+    const handleDeconnexion = () => {
+        props.lien2();
+
+        navigate(props.link);
+    };
+
     return (
         <section className='profilMenu'>
             <article>
@@ -15,7 +24,7 @@ function Profil_Menu(props) {
             </article>
             <nav>
                 <p className='firstNav'><Button link = {props.lien1} text = {props.text1}/></p>
-                <p><Button link = {props.lien2} text = {props.text2}/></p>
+                <p><Button link = {props.lien2} text = {props.text2} fonction = {handleDeconnexion}/></p>
             </nav>
         </section>
     );

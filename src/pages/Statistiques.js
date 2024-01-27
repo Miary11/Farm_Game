@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
 import Header_Profil from '../components/Header_Profil';
@@ -6,12 +6,24 @@ import '../assets/fontawesome-5/css/all.css';
 import Container from '../components/Container';
 
 const Statistiques = () => {
+    const [userData, setUserData] = useState(null);
+
     useEffect(() => {
         document.title = 'Statistiques';
+        const userDataString = localStorage.getItem('userData');
+        const parsedUserData = JSON.parse(userDataString);
+        setUserData(parsedUserData);
     }, []);
+
+    console.log('User Data:', userData);
+
+    if (!userData) {
+        return null;
+    }
+
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = 'Profil' lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
+            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
             <main className='noGridMain'>
                 <h1>Statistiques</h1>
                 <p>Dans ce menu, vous pouvez voir les statistiques reliées à votre profil.</p>

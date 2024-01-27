@@ -85,7 +85,7 @@ public class Saison {
         this.setFin(f);
     }
 
-    public Utilisateur(String nId, String n, Date d, Date f) throws Exception
+    public Saison(String nId, String n, Date d, Date f) throws Exception
     {
         this.setId(nId);
         this.setNom(n);

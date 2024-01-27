@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
@@ -8,14 +8,39 @@ import Welcome_Container from '../components/Welcome_Container';
 import Side_Card_Container from '../components/Side_Card_Container';
 import Card from '../components/Card';
 import Card_Details from '../components/Card_Details';
+import {getUserCulture,deconnexion} from '../assets/js/Function';
 
 const Accueil_BackOffice = () => {
+    const [userData, setUserData] = useState(null);
+    const [cultureData, setCultureData] = useState(null);
+
     useEffect(() => {
         document.title = 'Accueil - BackOffice';
+        const userDataString = localStorage.getItem('userData');
+        const parsedUserData = JSON.parse(userDataString);
+        setUserData(parsedUserData);
+
+        const fetchData = async () => {
+            try {
+                const userCultureData = await getUserCulture(parsedUserData[0].id);
+                setCultureData(userCultureData);
+            } catch (error) {
+                console.error('Error fetching user culture:', error);
+            }
+        };
+
+        fetchData();
     }, []);
+
+    console.log('User Data:', userData);
+
+    if (!userData) {
+        return null;
+    }
+    
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = 'Profil' lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
+            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='Landing'>
                 <section className='MidLeft'>
                     <Welcome_Container text = 'Bienvenue sur Farm Game'>
@@ -34,9 +59,9 @@ const Accueil_BackOffice = () => {
                 </section>
                 <section className='MidRight'>
                     <Side_Card_Container>
-                        <Card/>
-                        <Card/>
-                        <Card/>
+                    {cultureData && cultureData.map((culture) => (
+                        <Card key={culture.id} pic={`http://localhost:8080/Farm_Game/${culture.photo}`} desc={culture.nom}/>
+                    ))}
                     </Side_Card_Container>
                 </section>
             </main>

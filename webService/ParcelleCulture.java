@@ -143,7 +143,7 @@ public class ParcelleCulture {
         while (r.next()) {
             v.add(new ParcelleCulture(r.getString(1),r.getString(2),r.getDouble(3),r.getDouble(4),r.getDate(5)));
         }
-        ParcelleCulture[] allParcelle = new Parcelle[v.size()];
+        ParcelleCulture[] allParcelle = new ParcelleCulture[v.size()];
         v.copyInto(allParcelle);
         s.close();
         return allParcelle;

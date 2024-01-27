@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
@@ -11,18 +11,30 @@ import Small_Side_Container from '../components/Small_Side_Container';
 import Profil_Fiche from '../components/Profil_Fiche';
 
 const Fiche_Profil = () => {
+    const [userData, setUserData] = useState(null);
+
     useEffect(() => {
         document.title = 'Ma fiche';
+        const userDataString = localStorage.getItem('userData');
+        const parsedUserData = JSON.parse(userDataString);
+        setUserData(parsedUserData);
     }, []);
+
+    console.log('User Data:', userData);
+
+    if (!userData) {
+        return null;
+    }
+
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = 'Profil' lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
+            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
             <main className='formInsClass'>
                 <section className='FormLeft'>
                     <h1>Fiche profil</h1>
                     <p className='desc2'>Voici les informations importantes sur votre profil.</p>
                     <section className='fiche'>
-                        <Profil_Fiche icon = 'fas fa-user-circle' pseudo = 'Profil' text = 'Portefeuille : Lorem Ar'/>
+                        <Profil_Fiche icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} text = 'Portefeuille : 0 Ar'/>
                     </section>
                 </section>
                 <section className='SideLeft'>
