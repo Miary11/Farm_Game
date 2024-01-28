@@ -130,6 +130,13 @@ public class Terrain {
 
     }
 
+    public Terrain(String nId,String d,String p) throws Exception
+    {
+        this.setId(nId);
+        this.setDescription(d);
+        this.setPhoto(p);
+    }
+
     public Terrain(String pr, String d, String l, String p, Date dC, int e) throws Exception
     {
         this.setProprietaire(pr);
@@ -170,6 +177,17 @@ public class Terrain {
         }
         Statement s = c.createStatement();
         int n = s.executeUpdate("update Terrain set etat = 1 where idTerrain = '"+t+"'");
+        s.close();
+    }
+
+    public void updateTerrain(Connection c,Terrain t) throws Exception
+    {
+        if (c == null) {
+            Connect con = new Connect();
+            c = con.makeConnection();
+        }
+        Statement s = c.createStatement();
+        int n = s.executeUpdate("update Terrain set description = '"+t.getDescription()+"', photo = '"+t.getPhoto()+"' where idTerrain = '"+t.getId()+"'");
         s.close();
     }
 

@@ -9,6 +9,7 @@ import Card from '../components/Card';
 import Card_Details from '../components/Card_Details';
 import Small_Side_Container from '../components/Small_Side_Container';
 import Profil_Fiche from '../components/Profil_Fiche';
+import {deconnexion} from '../assets/js/Function';
 
 const Fiche_Profil = () => {
     const [userData, setUserData] = useState(null);
@@ -28,7 +29,7 @@ const Fiche_Profil = () => {
 
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
+            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='formInsClass'>
                 <section className='FormLeft'>
                     <h1>Fiche profil</h1>

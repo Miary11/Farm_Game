@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header_Profil from '../components/Header_Profil';
 import '../assets/fontawesome-5/css/all.css';
 import Container from '../components/Container';
+import {deconnexion} from '../assets/js/Function';
 
 const Statistiques = () => {
     const [userData, setUserData] = useState(null);
@@ -23,7 +24,7 @@ const Statistiques = () => {
 
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = '#' text2 = 'Se déconnecter'/>
+            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='noGridMain'>
                 <h1>Statistiques</h1>
                 <p>Dans ce menu, vous pouvez voir les statistiques reliées à votre profil.</p>
@@ -52,7 +53,7 @@ const Statistiques = () => {
                             <h1>5</h1>
                         </Container>
                         <Container id = 'statsRightBottom'>
-                            <p>Chiffres d’affaires (en milliers d’Ariary)</p>
+                            <p>Rendement moyen</p>
                             <h1>5</h1>
                         </Container>
                     </section>

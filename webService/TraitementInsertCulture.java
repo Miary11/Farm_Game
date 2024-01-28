@@ -23,7 +23,7 @@ public class TraitementInsertCulture extends HttpServlet {
         String uploadPath = getServletContext().getRealPath("") + File.separator + "user_uploads";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
-            uploadDir.mkdirs();  // Use mkdirs to create parent directories if needed
+            uploadDir.mkdirs();
         }
 
         try {
@@ -107,7 +107,6 @@ public class TraitementInsertCulture extends HttpServlet {
 	        throw new IOException("Failed to write the uploaded file", e);
 	    }
 
-	    // Return the relative path
 	    return "user_uploads/" + uniqueFileName;
 	}
 }

@@ -142,9 +142,11 @@ CREATE TABLE ParcelleCulture(
 	foreign key (idCulture) references Culture(idCulture)
 );
 
-create or replace view HistoriqueCulture as (select idParcelle,Culture.nom as culture,quantite,(quantite * prixAchat) as coutRevient, dateCulture
+create or replace view HistoriqueCulture as (select terrain,ParcelleCulture.idParcelle,Culture.nom as culture,quantite,(quantite * prixAchat) as coutRevient, dateCulture
 	from ParcelleCulture
 	join Culture on ParcelleCulture.idCulture = Culture.idCulture
+	join Parcelle on ParcelleCulture.idParcelle = Parcelle.idParcelle
+	join Terrain on Parcelle.terrain = Terrain.idTerrain
 );
 
 CREATE SEQUENCE simulationSeq START WITH 1 INCREMENT BY 1 CACHE 1 NO CYCLE;
