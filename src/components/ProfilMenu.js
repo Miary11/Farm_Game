@@ -1,9 +1,9 @@
 import '../assets/css/style.css';
-import Button from '../components/Button';
+import Button from './Button';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Profil_Menu(props) {
+function ProfilMenu(props) {
     const navigate = useNavigate();
 
     const handleDeconnexion = () => {
@@ -30,4 +30,4 @@ function Profil_Menu(props) {
     );
 }
 
-export default Profil_Menu;
+export default ProfilMenu;

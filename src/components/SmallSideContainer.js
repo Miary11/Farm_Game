@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function Small_Side_Container(props) {
+function SmallSideContainer(props) {
     return (
         <div className='small-container'>
             <section className='Titling'>
@@ -16,4 +16,4 @@ function Small_Side_Container(props) {
     );
 }
 
-export default Small_Side_Container;
+export default SmallSideContainer;

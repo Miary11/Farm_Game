@@ -1,17 +1,17 @@
 import React, { useEffect,useState } from 'react';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
-import Button from '../components/Button';
-import Header_Profil from '../components/Header_Profil';
+// import Button from '../components/Button';
+import HeaderProfil from '../components/HeaderProfil';
 import '../assets/fontawesome-5/css/all.css';
-import Side_Card_Container from '../components/Side_Card_Container';
+import SideCardContainer from '../components/SideCardContainer';
 import Card from '../components/Card';
-import Card_Details from '../components/Card_Details';
-import Small_Side_Container from '../components/Small_Side_Container';
-import Profil_Fiche from '../components/Profil_Fiche';
+import CardDetails from '../components/CardDetails';
+import SmallSideContainer from '../components/SmallSideContainer';
+import ProfilFiche from '../components/ProfilFiche';
 import {deconnexion} from '../assets/js/Function';
 
-const Fiche_Profil = () => {
+const FicheProfil = () => {
     const [userData, setUserData] = useState(null);
 
     useEffect(() => {
@@ -29,31 +29,31 @@ const Fiche_Profil = () => {
 
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
+            <HeaderProfil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='formInsClass'>
                 <section className='FormLeft'>
                     <h1>Fiche profil</h1>
                     <p className='desc2'>Voici les informations importantes sur votre profil.</p>
                     <section className='fiche'>
-                        <Profil_Fiche icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} text = 'Portefeuille : 0 Ar'/>
+                        <ProfilFiche icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} text = 'Portefeuille : 0 Ar'/>
                     </section>
                 </section>
                 <section className='SideLeft'>
-                    <Side_Card_Container>
+                    <SideCardContainer>
                         <Card/>
                         <Card/>
                         <Card/>
-                    </Side_Card_Container>
+                    </SideCardContainer>
                 </section>
                 <section className='SideRight'>
-                    <Small_Side_Container titre = 'Cultures'>
-                        <Card_Details text1 = 'Lorem'/>
-                        <Card_Details text1 = 'Lorem'/>
-                        <Card_Details text1 = 'Lorem'/>
-                        <Card_Details text1 = 'Lorem'/>
-                        <Card_Details text1 = 'Lorem'/>
-                        <Card_Details text1 = 'Lorem'/>
-                    </Small_Side_Container>
+                    <SmallSideContainer titre = 'Cultures'>
+                        <CardDetails text1 = 'Lorem'/>
+                        <CardDetails text1 = 'Lorem'/>
+                        <CardDetails text1 = 'Lorem'/>
+                        <CardDetails text1 = 'Lorem'/>
+                        <CardDetails text1 = 'Lorem'/>
+                        <CardDetails text1 = 'Lorem'/>
+                    </SmallSideContainer>
                 </section>
             </main>
             <Footer copyright = "© Tous droits réservés. Farm Game 2024"></Footer>
@@ -61,4 +61,4 @@ const Fiche_Profil = () => {
     );
 };
 
-export default Fiche_Profil;
+export default FicheProfil;

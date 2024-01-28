@@ -2,15 +2,15 @@ import React, { useEffect,useState } from 'react';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
-import Header_Profil from '../components/Header_Profil';
+import HeaderProfil from '../components/HeaderProfil';
 import '../assets/fontawesome-5/css/all.css';
-import Side_Card_Container from '../components/Side_Card_Container';
+import SideCardContainer from '../components/SideCardContainer';
 import Card from '../components/Card';
-import Card_Details from '../components/Card_Details';
-import Small_Side_Container from '../components/Small_Side_Container';
+import CardDetails from '../components/CardDetails';
+import SmallSideContainer from '../components/SmallSideContainer';
 import {insertCulture,getUserCulture,deconnexion} from '../assets/js/Function';
 
-const Insert_Culture = () => {
+const InsertCulture = () => {
     const [userData, setUserData] = useState(null);
     const [typeData, setTypeData] = useState(null);
     const [saisonData, setSaisonData] = useState(null);
@@ -78,7 +78,7 @@ const Insert_Culture = () => {
 
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
+            <HeaderProfil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='formInsClass'>
                 <section className='FormLeft'>
                     <h1>Insérer une culture</h1>
@@ -107,19 +107,19 @@ const Insert_Culture = () => {
                     </form>
                 </section>
                 <section className='SideLeft'>
-                    <Side_Card_Container>
+                    <SideCardContainer>
                     {cultureData && cultureData.map((culture) => (
                         <Card key={culture.id} pic={`http://localhost:8080/Farm_Game/${culture.photo}`} desc={culture.nom}/>
                     ))}
-                    </Side_Card_Container>
+                    </SideCardContainer>
                 </section>
                 <section className='SideRight'>
-                    <Small_Side_Container titre = 'Saisons'>
-                        <Card_Details pic = "/assets/img/JPG/Winter.jpeg" text1 = {saisonData[0].debut} text2 = {saisonData[0].fin}/>
-                        <Card_Details pic = "/assets/img/JPG/Spring.jpeg" text1 = {saisonData[1].debut} text2 = {saisonData[1].fin}/>
-                        <Card_Details pic = "/assets/img/JPG/Summer.jpeg" text1 = {saisonData[2].debut} text2 = {saisonData[2].fin}/>
-                        <Card_Details pic = "/assets/img/JPG/Fall.jpeg" text1 = {saisonData[3].debut} text2 = {saisonData[3].fin}/>
-                    </Small_Side_Container>
+                    <SmallSideContainer titre = 'Saisons'>
+                        <CardDetails pic = "/assets/img/JPG/Winter.jpeg" text1 = {saisonData[0].debut} text2 = {saisonData[0].fin}/>
+                        <CardDetails pic = "/assets/img/JPG/Spring.jpeg" text1 = {saisonData[1].debut} text2 = {saisonData[1].fin}/>
+                        <CardDetails pic = "/assets/img/JPG/Summer.jpeg" text1 = {saisonData[2].debut} text2 = {saisonData[2].fin}/>
+                        <CardDetails pic = "/assets/img/JPG/Fall.jpeg" text1 = {saisonData[3].debut} text2 = {saisonData[3].fin}/>
+                    </SmallSideContainer>
                 </section>
             </main>
             <Footer copyright = "© Tous droits réservés. Farm Game 2024"></Footer>
@@ -127,4 +127,4 @@ const Insert_Culture = () => {
     );
 };
 
-export default Insert_Culture;
+export default InsertCulture;

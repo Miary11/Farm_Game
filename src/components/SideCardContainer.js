@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function Side_Card_Container(props) {
+function SideCardContainer(props) {
     return (
         <div className='caroussel' id='c2'>
             {props.children}
@@ -9,4 +9,4 @@ function Side_Card_Container(props) {
     );
 }
 
-export default Side_Card_Container;
+export default SideCardContainer;

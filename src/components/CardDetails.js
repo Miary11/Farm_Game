@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function Card_Details(props) {
+function CardDetails(props) {
     return (
         <div className='card2'>
             <div className='CardTop'>
@@ -15,4 +15,4 @@ function Card_Details(props) {
     );
 }
 
-export default Card_Details;
+export default CardDetails;

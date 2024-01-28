@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function Header_Sub(props) {
+function HeaderSub(props) {
     return (
         <header>
             <div className='LeftTop'>
@@ -11,4 +11,4 @@ function Header_Sub(props) {
     );
 }
 
-export default Header_Sub;
+export default HeaderSub;

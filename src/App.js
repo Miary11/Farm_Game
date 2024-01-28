@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 
 import Connexion from './pages/Connexion';
 import Inscription from './pages/Inscription';
-import Accueil_BackOffice from './pages/Accueil_BackOffice';
-import Insert_Culture from './pages/Insert_Culture';
-import Valider_Terrain from './pages/Valider_Terrain';
-import Fiche_Profil from './pages/Fiche_Profil';
+import AccueilBackOffice from './pages/AccueilBackOffice';
+import InsertCulture from './pages/InsertCulture';
+import ValiderTerrain from './pages/ValiderTerrain';
+import FicheProfil from './pages/FicheProfil';
 import Statistiques from './pages/Statistiques';
 
 function App() {
@@ -17,10 +17,10 @@ function App() {
       <Routes>
         <Route path="/" element={< Connexion />} />
         <Route path="/inscription" element={< Inscription />} />
-        <Route path="/accueilBack" element={< Accueil_BackOffice />} />
-        <Route path="/insertCulture" element={< Insert_Culture />} />
-        <Route path="/validerTerrain" element={< Valider_Terrain />} />
-        <Route path="/ficheProfil" element={< Fiche_Profil />} />
+        <Route path="/accueilBack" element={< AccueilBackOffice />} />
+        <Route path="/insertCulture" element={< InsertCulture />} />
+        <Route path="/validerTerrain" element={< ValiderTerrain />} />
+        <Route path="/ficheProfil" element={< FicheProfil />} />
         <Route path="/stats" element={< Statistiques />} />
       </Routes>
     </Router>

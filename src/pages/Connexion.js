@@ -1,9 +1,9 @@
 import React, { useEffect,useState } from 'react';
-import Header_Sub from '../components/Header_Sub';
+import HeaderSub from '../components/HeaderSub';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
 import Container from '../components/Container';
-import Pic_Container from '../components/Pic_Container';
+import PicContainer from '../components/PicContainer';
 import Button from '../components/Button';
 import {checkLogin} from '../assets/js/Function';
 
@@ -28,7 +28,7 @@ const Connexion = () => {
     }, []);
     return (
         <div className='page'>
-            <Header_Sub logo = "/assets/img/PNG/Logo.png" description = "Logo"/>
+            <HeaderSub logo = "/assets/img/PNG/Logo.png" description = "Logo"/>
             <main className='formClass'>
                 <section className='left'>
                     <h1>Se Connecter</h1>
@@ -43,7 +43,7 @@ const Connexion = () => {
                     </Container>
                 </section>
                 <section className='right'>
-                    <Pic_Container></Pic_Container>
+                    <PicContainer></PicContainer>
                 </section>
             </main>
             <Footer copyright = "© Tous droits réservés. Farm Game 2024"></Footer>

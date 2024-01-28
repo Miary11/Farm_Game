@@ -1,8 +1,8 @@
 import '../assets/css/style.css';
-import Button from '../components/Button';
+import Button from './Button';
 import React from 'react';
 
-function Profil_Fiche(props) {
+function ProfilFiche(props) {
     return (
         <div className='profil'>
             <section className='profilTop'>
@@ -22,4 +22,4 @@ function Profil_Fiche(props) {
     );
 }
 
-export default Profil_Fiche;
+export default ProfilFiche;

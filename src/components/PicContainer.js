@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function Pic_Container(props) {
+function PicContainer(props) {
     return (
         <div className='picContainer'>
             <img src = {props.image} alt={props.description}/>
@@ -9,4 +9,4 @@ function Pic_Container(props) {
     );
 }
 
-export default Pic_Container;
+export default PicContainer;

@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function File_Button(props) {
+function FileButton(props) {
     return (
         <div className='fileButton'>
             <label className='customButton'>+</label>
@@ -10,4 +10,4 @@ function File_Button(props) {
     );
 }
 
-export default File_Button;
+export default FileButton;

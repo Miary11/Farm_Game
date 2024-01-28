@@ -1,7 +1,7 @@
 import '../assets/css/style.css';
 import React from 'react';
 
-function Welcome_Container(props) {
+function WelcomeContainer(props) {
     return (
         <div className='welcomeContainer'>
             <h1>{props.text}</h1>
@@ -10,4 +10,4 @@ function Welcome_Container(props) {
     );
 }
 
-export default Welcome_Container;
+export default WelcomeContainer;

@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react';
 import '../assets/css/style.css';
 import Footer from '../components/Footer';
-import Header_Profil from '../components/Header_Profil';
+import HeaderProfil from '../components/HeaderProfil';
 import '../assets/fontawesome-5/css/all.css';
 import Container from '../components/Container';
 import {deconnexion} from '../assets/js/Function';
@@ -24,7 +24,7 @@ const Statistiques = () => {
 
     return (
         <div className='page'>
-            <Header_Profil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
+            <HeaderProfil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='noGridMain'>
                 <h1>Statistiques</h1>
                 <p>Dans ce menu, vous pouvez voir les statistiques reliées à votre profil.</p>
