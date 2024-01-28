@@ -1,5 +1,4 @@
 import '../assets/css/style.css';
-import Button from './Button';
 import React from 'react';
 
 function ProfilFiche(props) {

@@ -5,7 +5,7 @@ function CardDetails(props) {
     return (
         <div className='card2'>
             <div className='CardTop'>
-                <img src={props.pic}/>
+                <img src={props.pic} alt={props.description}/>
             </div>
             <div className='CardBottom'>
                 <p className='First'>{props.text1}</p>
