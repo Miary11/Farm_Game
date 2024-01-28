@@ -245,6 +245,24 @@ public class Terrain {
         return allTerrain;
     }
 
+    public Terrain[] findAllFirstUserTerrain(Connection c,String nId) throws Exception
+    {
+        if (c == null) {
+            Connect con = new Connect();
+            c = con.makeConnection();
+        }
+        Statement s = c.createStatement();
+        ResultSet r = s.executeQuery("select * from Terrain where proprietaire = '"+nId+"' limit 3");
+        Vector v = new Vector();
+        while (r.next()) {
+            v.add(new Terrain(r.getString(1),r.getString(2),r.getString(3),r.getString(4),r.getString(5),r.getDate(6),r.getInt(7)));
+        }
+        Terrain[] allTerrain = new Terrain[v.size()];
+        v.copyInto(allTerrain);
+        s.close();
+        return allTerrain;
+    }
+
     public Terrain[] findAllUserTerrainNonValide(Connection c,String nId) throws Exception
     {
         if (c == null) {
