@@ -4,7 +4,7 @@ export async function checkLogin(mail, password) {
     params.append('mail', mail);
     params.append('motDePasse', password);
 
-    const url = new URL('http://localhost:8080/Farm_Game/checkLogin');
+    const url = new URL('http://localhost:8080/login');
     url.search = params.toString();
 
     const response = await fetch(url, {
@@ -57,7 +57,7 @@ export async function insertUser(nom, prenom, naissance, mail, mdp, pseudo) {
     params.append('mdp', mdp);
     params.append('pseudo', pseudo);
 
-    const url = new URL('http://localhost:8080/Farm_Game/insertUser');
+    const url = new URL('http://localhost:8080/insertUser');
     url.search = params.toString();
 
     const response = await fetch(url, {
@@ -105,7 +105,7 @@ export async function insertUser(nom, prenom, naissance, mail, mdp, pseudo) {
 
 export async function insertCulture(formData) {
   try {
-    const url = 'http://localhost:8080/Farm_Game/insertCulture';
+    const url = 'http://localhost:8080/insertCulture';
     
     const response = await fetch(url, {
       method: 'POST',
@@ -145,7 +145,7 @@ export async function insertCulture(formData) {
 
 export async function getType() {
   try {
-    const url = new URL('http://localhost:8080/Farm_Game/types');
+    const url = new URL('http://localhost:8080/types');
 
     const response = await fetch(url, {
       method: 'GET',
@@ -186,7 +186,7 @@ export async function getType() {
 
 export async function getSaison() {
   try {
-    const url = new URL('http://localhost:8080/Farm_Game/saisons');
+    const url = new URL('http://localhost:8080/saisons');
 
     const response = await fetch(url, {
       method: 'GET',
@@ -227,7 +227,7 @@ export async function getSaison() {
 
 export async function getUserCulture(user) {
   try {
-    const url = new URL('http://localhost:8080/Farm_Game/cultures?user='+user);
+    const url = new URL('http://localhost:8080/usercultures?user='+user);
 
     const response = await fetch(url, {
       method: 'GET',

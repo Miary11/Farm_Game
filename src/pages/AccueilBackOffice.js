@@ -60,7 +60,7 @@ const AccueilBackOffice = () => {
                 <section className='MidRight'>
                     <SideCardContainer>
                     {cultureData && cultureData.map((culture) => (
-                        <Card key={culture.id} pic={`http://localhost:8080/Farm_Game/${culture.photo}`} desc={culture.nom}/>
+                        <Card key={culture.id} pic={`http://localhost:8080/${culture.photo}`} desc={culture.nom}/>
                     ))}
                     </SideCardContainer>
                 </section>

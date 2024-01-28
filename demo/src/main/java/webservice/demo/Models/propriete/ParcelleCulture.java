@@ -1,7 +1,7 @@
-package propriete;
+package webservice.demo.Models.propriete;
 import java.sql.*;
 import java.util.Vector;
-import tools.Connect;
+import webservice.demo.Models.tools.Connect;
 import java.text.SimpleDateFormat;
 
 public class ParcelleCulture {
@@ -229,5 +229,4 @@ public class ParcelleCulture {
         s.close();
         return allParcelle;
     }
-    
 }
