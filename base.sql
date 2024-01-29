@@ -121,6 +121,11 @@ create or replace view ParcelleDetails as (select idParcelle,(longueur * largeur
 	from Parcelle
 );
 
+create or replace view ParcelleDetailsTerrainProprietaire as (select idParcelle,superficie,terrain,proprietaire
+	from ParcelleDetails
+	join Terrain on Terrain.idTerrain = ParcelleDetails.terrain
+);
+
 CREATE TABLE ParcelleCulturePossible(
 	idParcelle varchar(30),
 	idTypeCulture varchar(30),
@@ -149,6 +154,13 @@ create or replace view HistoriqueCulture as (select terrain,ParcelleCulture.idPa
 	join Terrain on Parcelle.terrain = Terrain.idTerrain
 );
 
+create or replace view HistoriqueCultureProprietaire as (select terrain,idparcelle,culture,quantite,coutRevient,dateCulture,proprietaire
+	from HistoriqueCulture
+	join Terrain on HistoriqueCulture.terrain = Terrain.idTerrain
+);
+
+select sum(quantite) from HistoriqueCultureProprietaire WHERE proprietaire = 'USER011';
+
 CREATE SEQUENCE simulationSeq START WITH 1 INCREMENT BY 1 CACHE 1 NO CYCLE;
 
 CREATE TABLE Simulation(
@@ -165,6 +177,18 @@ create or replace view SimulationCulture as (select idSimulation,idParcelle,Cult
 	from Simulation
 	join Culture on Simulation.idCulture = Culture.idCulture
 );
+
+create or replace view SimulationCultureProprietaire as (select idSimulation,SimulationCulture.idParcelle,culture,quantite,coutRevient,dateSimulation,idTerrain as terrain,ParcelleDetailsTerrainProprietaire.proprietaire
+	from SimulationCulture
+	join ParcelleDetailsTerrainProprietaire on ParcelleDetailsTerrainProprietaire.idParcelle = SimulationCulture.idParcelle
+	join Terrain on Terrain.idTerrain = ParcelleDetailsTerrainProprietaire.terrain
+);
+
+SELECT count(idSimulation) from SimulationCultureProprietaire WHERE proprietaire = 'USER011';
+
+SELECT AVG(nbParcelle) as nbMoyen FROM (SELECT COUNT(idParcelle) as nbParcelle FROM ParcelleDetailsTerrainProprietaire WHERE proprietaire = 'USER011' GROUP BY terrain) AS getNbMoyen;
+
+select sum(quantite) from SimulationCultureProprietaire WHERE proprietaire = 'USER011';
 
 -- À faire en MongoDB
 

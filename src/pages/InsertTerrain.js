@@ -8,16 +8,20 @@ import SideCardContainer from '../components/SideCardContainer';
 import Card from '../components/Card';
 import CardDetails from '../components/CardDetails';
 import SmallSideContainer from '../components/SmallSideContainer';
-import {validerTerrain,getUserTerrainNonValide,getUserCulture,deconnexion} from '../assets/js/Function';
+import {insertTerrain,getUserCulture,deconnexion} from '../assets/js/Function';
 
-const ValiderTerrain = () => {
+const InsertTerrain = () => {
     const [userData, setUserData] = useState(null);
+    const [typeData, setTypeData] = useState(null);
     const [saisonData, setSaisonData] = useState(null);
     const [cultureData, setCultureData] = useState(null);
-    const [terrainData, setTerrainData] = useState(null);
 
     const [formData, setFormData] = useState({
-        terrain: '',
+        user: '',
+        description: '',
+        localisation: '',
+        photo: '',
+        creation: '',
     });
 
     const handleInputChange = (e) => {
@@ -28,15 +32,22 @@ const ValiderTerrain = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = new FormData();
-        form.append('terrain', e.target.terrain.value);
-        await validerTerrain(form);
+        form.append('user', e.target.user.value);
+        form.append('description', e.target.description.value);
+        form.append('localisation', e.target.localisation.value);
+        form.append('photo', e.target.photo.files[0]);
+        form.append('creation', e.target.creation.value);
+        await insertTerrain(form);
     };
 
     useEffect(() => {
-        document.title = 'Valider un terrain';
+        document.title = 'Insérer un terrain';
         const userDataString = localStorage.getItem('userData');
         const parsedUserData = JSON.parse(userDataString);
         setUserData(parsedUserData);
+        const typeDataString = localStorage.getItem('typeData');
+        const parsedTypeData = JSON.parse(typeDataString);
+        setTypeData(parsedTypeData);
         const saisonDataString = localStorage.getItem('saisonData');
         const parsedSaisonData = JSON.parse(saisonDataString);
         setSaisonData(parsedSaisonData);
@@ -45,8 +56,6 @@ const ValiderTerrain = () => {
             try {
                 const userCultureData = await getUserCulture(parsedUserData[0].id);
                 setCultureData(userCultureData);
-                const userTerrainData = await getUserTerrainNonValide(parsedUserData[0].id);
-                setTerrainData(userTerrainData);
             } catch (error) {
                 console.error('Error fetching user culture:', error);
             }
@@ -55,27 +64,26 @@ const ValiderTerrain = () => {
         fetchData();
     }, []);
 
-    console.log('User Data:', userData);
+    // console.log('User Data:', userData);
+    // console.log('Culture Data:', cultureData);
 
-    if (!userData || !saisonData) {
+    if (!userData || !typeData || !saisonData) {
         return null;
     }
-    
+
     return (
         <div className='page'>
             <HeaderProfil link='/accueilBack' logo = "/assets/img/PNG/Logo.png" description = "Logo" icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} lien1 = '/ficheProfil' text1 = 'Voir ma fiche' lien2 = {deconnexion} text2 = 'Se déconnecter'/>
             <main className='formInsClass'>
                 <section className='FormLeft'>
-                    <h1>Valider un terrain</h1>
-                    <p className='desc2'>Dans ce menu, vous pouvez valider un terrain qui a été créé par vos soins.<br/>Pour faire cela veuillez remplir les champs ci-dessous.</p>
-                    <form method='put' className='Insert' onSubmit={handleSubmit}>
-                        <p className='tFirst'>Terrain : 
-                            <select name='terrain' value={formData.terrain} onChange={handleInputChange}>
-                            {terrainData && terrainData.map((terrain) => (
-                                <option key={terrain.idTerrain} value={terrain.idTerrain}>{terrain.localisation}</option>
-                            ))}
-                            </select>
-                        </p>
+                    <h1>Insérer un terrain</h1>
+                    <p className='desc2'>Dans ce menu, vous pouvez créer une culture qui vous sera propre et qui sera uniquement visible sur votre profil.<br/>Pour faire cela veuillez remplir les champs ci-dessous.</p>
+                    <form method='post' className='Insert' encType="multipart/form-data" onSubmit={handleSubmit}>
+                        <p id='InsFirst'>Description : <input type = 'text' name='description' value={formData.description} onChange={handleInputChange}/></p>
+                        <p>Localisation : <input type = 'text' name='localisation' value={formData.localisation} onChange={handleInputChange}/></p>
+                        <p>Sélectionner une photo : <input type ='file' name = 'photo' onChange={handleInputChange}/></p>
+                        <p>Date de création : <input type = 'date' name='creation' value={formData.creation} onChange={handleInputChange}/></p>
+                        <input type='hidden' name='user' value={userData[0].id}/>
                         <Button text = 'Valider'/>
                     </form>
                 </section>
@@ -88,7 +96,7 @@ const ValiderTerrain = () => {
                 </section>
                 <section className='SideRight'>
                     <SmallSideContainer titre = 'Saisons'>
-                    <CardDetails pic = "/assets/img/JPG/Winter.jpeg" text1 = {saisonData[0].debut} text2 = {saisonData[0].fin}/>
+                        <CardDetails pic = "/assets/img/JPG/Winter.jpeg" text1 = {saisonData[0].debut} text2 = {saisonData[0].fin}/>
                         <CardDetails pic = "/assets/img/JPG/Spring.jpeg" text1 = {saisonData[1].debut} text2 = {saisonData[1].fin}/>
                         <CardDetails pic = "/assets/img/JPG/Summer.jpeg" text1 = {saisonData[2].debut} text2 = {saisonData[2].fin}/>
                         <CardDetails pic = "/assets/img/JPG/Fall.jpeg" text1 = {saisonData[3].debut} text2 = {saisonData[3].fin}/>
@@ -100,4 +108,4 @@ const ValiderTerrain = () => {
     );
 };
 
-export default ValiderTerrain;
+export default InsertTerrain;

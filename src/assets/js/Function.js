@@ -143,6 +143,46 @@ export async function insertCulture(formData) {
   }
 }
 
+export async function insertTerrain(formData) {
+  try {
+    const url = 'http://localhost:8080/insertTerrain';
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      const responseData = await response.json();
+      if (responseData && responseData.error) {
+        alert(responseData.error);
+      } else {
+        if (responseData && responseData.success) {
+          window.location.replace('/accueilBack');
+        }
+      }
+    } else {
+      window.location.replace('/accueilBack');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
 export async function getType() {
   try {
     const url = new URL('http://localhost:8080/types');
@@ -258,9 +298,418 @@ export async function getUserCulture(user) {
     else {
       return cultureData;
     }
-  } 
+  }
 
   catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserTerrain(user) {
+  try {
+    const url = new URL('http://localhost:8080/userterrains?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserNbCulture(user) {
+  try {
+    const url = new URL('http://localhost:8080/nbcultures?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserNbTerrain(user) {
+  try {
+    const url = new URL('http://localhost:8080/nbterrains?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserNbParcelleMoyen(user) {
+  try {
+    const url = new URL('http://localhost:8080/nbparcellemoyen?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserSurfaceMoyenne(user) {
+  try {
+    const url = new URL('http://localhost:8080/surfacemoyenneparcelle?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserNbSimulation(user) {
+  try {
+    const url = new URL('http://localhost:8080/nbsimulation?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserRendement(user) {
+  try {
+    const url = new URL('http://localhost:8080/rendement?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserFirstTerrain(user) {
+  try {
+    const url = new URL('http://localhost:8080/userfirstterrains?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function getUserTerrainNonValide(user) {
+  try {
+    const url = new URL('http://localhost:8080/userterrainsnonvalide?user='+user);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } 
+
+      else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const cultureData = await response.json();
+
+    if (cultureData && cultureData.error) {
+      alert(cultureData.error);
+    } 
+    else {
+      return cultureData;
+    }
+  }
+
+  catch (error) {
+    console.error('Error:', error);
+    alert('Oups... Quelque chose s\'est mal passé');
+  }
+}
+
+export async function validerTerrain(formData) {
+  try {
+    const url = 'http://localhost:8080/validerTerrain';
+    
+    const response = await fetch(url, {
+      method: 'PUT',
+      mode: 'cors',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      if (errorData && errorData.error) {
+        alert(errorData.error);
+      } else {
+        alert('Oups... Quelque chose s\'est mal passé');
+      }
+      return;
+    }
+
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      const responseData = await response.json();
+      if (responseData && responseData.error) {
+        alert(responseData.error);
+      } else {
+        if (responseData && responseData.success) {
+          window.location.replace('/accueilBack');
+        }
+      }
+    } else {
+      window.location.replace('/accueilBack');
+    }
+  } catch (error) {
     console.error('Error:', error);
     alert('Oups... Quelque chose s\'est mal passé');
   }

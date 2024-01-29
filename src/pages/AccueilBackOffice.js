@@ -8,11 +8,12 @@ import WelcomeContainer from '../components/WelcomeContainer';
 import SideCardContainer from '../components/SideCardContainer';
 import Card from '../components/Card';
 import CardDetails from '../components/CardDetails';
-import {getUserCulture,deconnexion} from '../assets/js/Function';
+import {getUserFirstTerrain,getUserCulture,deconnexion} from '../assets/js/Function';
 
 const AccueilBackOffice = () => {
     const [userData, setUserData] = useState(null);
     const [cultureData, setCultureData] = useState(null);
+    const [terrainData, setTerrainData] = useState(null);
 
     useEffect(() => {
         document.title = 'Accueil - BackOffice';
@@ -24,6 +25,8 @@ const AccueilBackOffice = () => {
             try {
                 const userCultureData = await getUserCulture(parsedUserData[0].id);
                 setCultureData(userCultureData);
+                const userTerrainData = await getUserFirstTerrain(parsedUserData[0].id);
+                setTerrainData(userTerrainData);
             } catch (error) {
                 console.error('Error fetching user culture:', error);
             }
@@ -32,7 +35,7 @@ const AccueilBackOffice = () => {
         fetchData();
     }, []);
 
-    console.log('User Data:', userData);
+    // console.log('User Data:', userData);
 
     if (!userData) {
         return null;
@@ -52,9 +55,9 @@ const AccueilBackOffice = () => {
                         </section>
                     </WelcomeContainer>
                     <section className='BottomLeft'>
-                        <CardDetails text1 = 'Localisation : Lorem' text2 = 'Etat : Validé'/>
-                        <CardDetails text1 = 'Localisation : Lorem' text2 = 'Etat : Validé'/>
-                        <CardDetails text1 = 'Localisation : Lorem' text2 = 'Etat : Validé'/>
+                        {terrainData && terrainData.map((terrain) => (
+                            <CardDetails key={terrain.idTerrain} pic={`http://localhost:8080/${terrain.photo}`} description = {terrain.localisation} text1={`Localisation: ${terrain.localisation}`} text2={`Etat : ${terrain.etat === 0 ? 'Non validé' : terrain.etat === 1 ? 'Validé' : terrain.etat}`}/>
+                        ))}
                     </section>
                 </section>
                 <section className='MidRight'>

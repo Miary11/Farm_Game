@@ -9,19 +9,34 @@ import Card from '../components/Card';
 import CardDetails from '../components/CardDetails';
 import SmallSideContainer from '../components/SmallSideContainer';
 import ProfilFiche from '../components/ProfilFiche';
-import {deconnexion} from '../assets/js/Function';
+import {getUserTerrain,getUserCulture,deconnexion} from '../assets/js/Function';
 
 const FicheProfil = () => {
     const [userData, setUserData] = useState(null);
+    const [cultureData, setCultureData] = useState(null);
+    const [terrainData, setTerrainData] = useState(null);
 
     useEffect(() => {
         document.title = 'Ma fiche';
         const userDataString = localStorage.getItem('userData');
         const parsedUserData = JSON.parse(userDataString);
         setUserData(parsedUserData);
+
+        const fetchData = async () => {
+            try {
+                const userCultureData = await getUserCulture(parsedUserData[0].id);
+                setCultureData(userCultureData);
+                const userTerrainData = await getUserTerrain(parsedUserData[0].id);
+                setTerrainData(userTerrainData);
+            } catch (error) {
+                console.error('Error fetching user culture:', error);
+            }
+        };
+
+        fetchData();
     }, []);
 
-    console.log('User Data:', userData);
+    // console.log('User Data:', userData);
 
     if (!userData) {
         return null;
@@ -35,24 +50,21 @@ const FicheProfil = () => {
                     <h1>Fiche profil</h1>
                     <p className='desc2'>Voici les informations importantes sur votre profil.</p>
                     <section className='fiche'>
-                        <ProfilFiche icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} text = 'Portefeuille : 0 Ar'/>
+                        <ProfilFiche icon = 'fas fa-user-circle' pseudo = {userData[0].pseudo} text = 'Portefeuille : Lorem Ar'/>
                     </section>
                 </section>
-                <section className='SideLeft'>
+                <section className='SideLeft' id='profilLeft'>
                     <SideCardContainer>
-                        <Card/>
-                        <Card/>
-                        <Card/>
+                    {terrainData && terrainData.map((terrain) => (
+                        <Card key={terrain.idTerrain} pic={`http://localhost:8080/${terrain.photo}`} desc={terrain.localisation}/>
+                    ))}
                     </SideCardContainer>
                 </section>
                 <section className='SideRight'>
                     <SmallSideContainer titre = 'Cultures'>
-                        <CardDetails text1 = 'Lorem'/>
-                        <CardDetails text1 = 'Lorem'/>
-                        <CardDetails text1 = 'Lorem'/>
-                        <CardDetails text1 = 'Lorem'/>
-                        <CardDetails text1 = 'Lorem'/>
-                        <CardDetails text1 = 'Lorem'/>
+                    {cultureData && cultureData.map((culture) => (
+                        <CardDetails key={culture.idCulture} pic={`http://localhost:8080/${culture.photo}`} desc={culture.nom} text1={culture.nom}/>
+                    ))}
                     </SmallSideContainer>
                 </section>
             </main>

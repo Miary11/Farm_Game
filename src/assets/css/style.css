@@ -34,6 +34,7 @@ main{
     padding-left: 14%;
 }
 
+
 .header2{
     height: 160px;
     /* border-bottom: 1px solid white; */
@@ -615,6 +616,14 @@ input[type="file"] {
     margin-left: 2px;
 }
 
+.noGridMain #MidRight{
+    overflow: scroll;
+}
+
+#midH1 {
+    height: 24px;
+}
+
 #statsContainer{
     border: 1px solid white;
     width: 1175px;
@@ -749,3 +758,31 @@ footer{
     color: white;
     opacity: 1; /* Firefox */
   }
+
+.BottomLeft .card2{
+    overflow: hidden;
+}
+
+.BottomLeft .card2 .CardTop{
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.BottomLeft .card2 .CardTop img{
+    height: 450px;
+    margin-top: -85%;
+    margin-left: -7%;
+}
+
+#profilLeft .card img{
+    height: 540px;
+    margin-top: -40%;
+}
+
+#picRight{
+    overflow: hidden;
+}
+
+#picRight img{
+    margin-top: -45%;
+}

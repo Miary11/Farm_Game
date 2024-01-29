@@ -42,8 +42,8 @@ const Connexion = () => {
                         </form>
                     </Container>
                 </section>
-                <section className='right'>
-                    <PicContainer></PicContainer>
+                <section className='right' id='picRight'>
+                    <PicContainer image = '/assets/img/JPG/charmaine-jane-villanueva-asset.jpeg' description = 'game'/>
                 </section>
             </main>
             <Footer copyright = "© Tous droits réservés. Farm Game 2024"></Footer>
