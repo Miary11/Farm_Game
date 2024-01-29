@@ -9,8 +9,8 @@ import {checkLogin} from '../assets/js/Function';
 
 const Connexion = () => {
     const [formData, setFormData] = useState({
-        mail: '',
-        motDePasse: '',
+        mail: 'leTest@gmail.com',
+        motDePasse: 'test',
     });
 
     const handleInputChange = (e) => {

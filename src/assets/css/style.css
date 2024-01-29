@@ -786,3 +786,10 @@ footer{
 #picRight img{
     margin-top: -45%;
 }
+
+body button:hover{
+    border: 1px solid white;
+    background-color: white;
+    color: #00641B;
+    transition: 0.3s;
+}
