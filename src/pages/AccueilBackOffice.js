@@ -56,14 +56,14 @@ const AccueilBackOffice = () => {
                     </WelcomeContainer>
                     <section className='BottomLeft'>
                         {terrainData && terrainData.map((terrain) => (
-                            <CardDetails key={terrain.idTerrain} pic={`http://localhost:8080/${terrain.photo}`} description = {terrain.localisation} text1={`Localisation: ${terrain.localisation}`} text2={`Etat : ${terrain.etat === 0 ? 'Non validé' : terrain.etat === 1 ? 'Validé' : terrain.etat}`}/>
+                            <CardDetails key={terrain.idTerrain} pic={`https://farmspring-production.up.railway.app/${terrain.photo}`} description = {terrain.localisation} text1={`Localisation: ${terrain.localisation}`} text2={`Etat : ${terrain.etat === 0 ? 'Non validé' : terrain.etat === 1 ? 'Validé' : terrain.etat}`}/>
                         ))}
                     </section>
                 </section>
                 <section className='MidRight'>
                     <SideCardContainer>
                     {cultureData && cultureData.map((culture) => (
-                        <Card key={culture.id} pic={`http://localhost:8080/${culture.photo}`} desc={culture.nom}/>
+                        <Card key={culture.id} pic={`https://farmspring-production.up.railway.app/${culture.photo}`} desc={culture.nom}/>
                     ))}
                     </SideCardContainer>
                 </section>

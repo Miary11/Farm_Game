@@ -56,14 +56,14 @@ const FicheProfil = () => {
                 <section className='SideLeft' id='profilLeft'>
                     <SideCardContainer>
                     {terrainData && terrainData.map((terrain) => (
-                        <Card key={terrain.idTerrain} pic={`http://localhost:8080/${terrain.photo}`} desc={terrain.localisation}/>
+                        <Card key={terrain.idTerrain} pic={`https://farmspring-production.up.railway.app/${terrain.photo}`} desc={terrain.localisation}/>
                     ))}
                     </SideCardContainer>
                 </section>
                 <section className='SideRight'>
                     <SmallSideContainer titre = 'Cultures'>
                     {cultureData && cultureData.map((culture) => (
-                        <CardDetails key={culture.idCulture} pic={`http://localhost:8080/${culture.photo}`} desc={culture.nom} text1={culture.nom}/>
+                        <CardDetails key={culture.idCulture} pic={`https://farmspring-production.up.railway.app/${culture.photo}`} desc={culture.nom} text1={culture.nom}/>
                     ))}
                     </SmallSideContainer>
                 </section>

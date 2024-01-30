@@ -90,7 +90,7 @@ const InsertTerrain = () => {
                 <section className='SideLeft'>
                     <SideCardContainer>
                     {cultureData && cultureData.map((culture) => (
-                        <Card key={culture.id} pic={`http://localhost:8080/${culture.photo}`} desc={culture.nom}/>
+                        <Card key={culture.id} pic={`https://farmspring-production.up.railway.app/${culture.photo}`} desc={culture.nom}/>
                     ))}
                     </SideCardContainer>
                 </section>
